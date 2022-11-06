@@ -170,13 +170,13 @@ public class CameraPointerManager : MonoBehaviour
         {           
             playerTf.parent.position = new Vector3(4.99f, playerTf.parent.position.y, playerTf.parent.position.z);
         }           
-        if (playerTf.parent.position.y >= 5)
+        if (playerTf.parent.position.y >= 5.99f)
         {           
-            playerTf.parent.position = new Vector3(playerTf.parent.position.x, 0.01f, playerTf.parent.position.z);
+            playerTf.parent.position = new Vector3(playerTf.parent.position.x, 0.1f, playerTf.parent.position.z);
         }           
-        if (playerTf.parent.position.y <= 0)
+        if (playerTf.parent.position.y <= 0.0f)
         {           
-            playerTf.parent.position = new Vector3(playerTf.parent.position.x, 4.99f, playerTf.parent.position.z);
+            playerTf.parent.position = new Vector3(playerTf.parent.position.x, 3.99f, playerTf.parent.position.z);
         }           
         if (playerTf.parent.position.z >= 5)
         {           
@@ -188,8 +188,5 @@ public class CameraPointerManager : MonoBehaviour
         }
     }
     //--------------------------------------
-    public void Fire()
-    {
-        Debug.Log("Dracays");
-    }
+   
 }

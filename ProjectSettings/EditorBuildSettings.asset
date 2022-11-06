@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.17.0/Hello Cardboard/Scenes/HelloCardboard.unity
-    guid: 145a2a45d7bc746b19cb68410368bf96
+    path: Assets/Scenes/SelectDrac.unity
+    guid: cf7460b604031f04683dd081ab371534
+  - enabled: 1
+    path: Assets/Scenes/DrivingDrac.unity
+    guid: 4a44e63895354be4ebe6e0678efa94dc
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: efe814198b70e734781e9b7b853baab7, type: 2}

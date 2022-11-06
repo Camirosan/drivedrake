@@ -57,13 +57,13 @@ public class EnemyManager : MonoBehaviour
         {
             enemyTF.position = new Vector3(4.99f, enemyTF.position.y, enemyTF.position.z);
         }
-        if (enemyTF.position.y >= 5)
+        if (enemyTF.position.y >= 4.99f)
         {
-            enemyTF.position = new Vector3(enemyTF.position.x, 0.01f, enemyTF.position.z);
+            enemyTF.position = new Vector3(enemyTF.position.x, -0.99f, enemyTF.position.z);
         }
-        if (enemyTF.position.y <= 0)
+        if (enemyTF.position.y <= -1.0f)
         {
-            enemyTF.position = new Vector3(enemyTF.position.x, 4.99f, enemyTF.position.z);
+            enemyTF.position = new Vector3(enemyTF.position.x, 3.99f, enemyTF.position.z);
         }
         if (enemyTF.position.z >= 5)
         {
