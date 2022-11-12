@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - interactable
+  - drac1
+  - drac2
+  - drac3
   layers:
   - Default
   - TransparentFX

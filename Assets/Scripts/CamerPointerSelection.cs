@@ -13,7 +13,10 @@ public class CamerPointerSelection : MonoBehaviour
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
     private SceneManager SceneManager;
-    private readonly string interactableTag = "interactable";
+    //private readonly string interactableTag = "interactable";
+    private readonly string dragTag1 = "drac1";
+    private readonly string dragTag2 = "drac2";
+    private readonly string dragTag3 = "drac3";
     private float scaleSize = 0.025f;
     /// <summary>
     /// Update is called once per frame.
@@ -47,8 +50,22 @@ public class CamerPointerSelection : MonoBehaviour
                 _gazedAtObject.SendMessage("OnPointerEnter", null, SendMessageOptions.DontRequireReceiver);
                 GazeSelect.Instance.StartGazeSelection();
             }
-            if (hit.transform.CompareTag(interactableTag))
+            if (hit.transform.CompareTag(dragTag1) || hit.transform.CompareTag(dragTag2) || hit.transform.CompareTag(dragTag3))
             {
+                switch (hit.transform.tag)
+                {
+                    case "drac1":
+                        PlayerSelectionManager.instance.SetDracSelection(1);
+                        break;
+                    case "drac2":
+                        PlayerSelectionManager.instance.SetDracSelection(2);
+                        break;
+                    case "drac3":
+                        PlayerSelectionManager.instance.SetDracSelection(3);
+                        break;
+                    default:
+                        break;
+                }
                 PointerOnGaze(hit.point);
             }
             else

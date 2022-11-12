@@ -17,13 +17,29 @@ public class CameraPointerManager : MonoBehaviour
     private readonly string interactableTag = "interactable";
     private float scaleSize = 0.025f;
     private bool selecting = false;
+    private int dracActive;
+    private int maxDracs = 3;
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
     private float timer;
+    private GameObject[] drac = new GameObject[3];
     private void Start()
     {
         GazeManager.Instance.OnGazeSelection += GazeSelection;
+        dracActive = PlayerSelectionManager.instance.GetDracSelection();
+        Debug.Log($"dragon {dracActive} seleccionado");
+        //GameObject.FindGameObjectWithTag($"drac{dracActive}").SetActive(true);
+        //drac = GameObject.FindGameObjectWithTag($"drac2");
+        for (int i = 0; i < maxDracs; i++)
+        {
+            drac[i] = GameObject.Find($"drac{i+1}");
+            drac[i].SetActive(false);
+        }
+        //GameObject.Find($"drac{dracActive}").SetActive(true);
+        //drac = GameObject.Find($"drac2");
+        //drac.SetActive(false);
+        drac[dracActive-1].SetActive(true);
     }
 
     private void GazeSelection()
@@ -106,7 +122,7 @@ public class CameraPointerManager : MonoBehaviour
         movementDirection.x = (float)Math.Sin(DegToRad(playerTf.rotation.eulerAngles.y));
         movementDirection.y = -1.0f * (float)Math.Sin(DegToRad(playerTf.rotation.eulerAngles.x));
         movementDirection.z = (float)Math.Cos(DegToRad(playerTf.rotation.eulerAngles.y));
-        playerTf.parent.position += (movementDirection * TopSpeed);
+        playerTf.parent.position += (movementDirection * TopSpeed * Time.deltaTime);
         BorderDetection();
         //Debug.Log($"pos = {playerTf.position.ToString()}");
         //Debug.Log($"rot = {playerTf.rotation.eulerAngles.ToString()}");

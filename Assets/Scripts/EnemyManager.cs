@@ -13,10 +13,10 @@ public class EnemyManager : MonoBehaviour
     public float TopSpeed;
     private Vector3 movementDirection;
     [Header("Change direction iteration")]
-    [Min(10), Tooltip("The iterations needed to change enemy direction")]
-    public int cambioDireccion = 500;
-    private int cambioDireccionCounter;
-    
+    [Min(1), Tooltip("The iterations needed to change enemy direction")]
+    public int cambioDireccion = 5;
+    private float cambioDireccionCounter;
+    //public AudioSource dracCry;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +27,9 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         var rand = new System.Random();
-        cambioDireccionCounter--;
-        if (cambioDireccionCounter == 0)
+        Debug.Log($"Cambio direction counter = {cambioDireccionCounter}");
+        cambioDireccionCounter -= Time.deltaTime;
+        if (cambioDireccionCounter <= 0)
         {
 
             //Debug.Log(Time.deltaTime);
@@ -40,7 +41,7 @@ public class EnemyManager : MonoBehaviour
         movementDirection.x = (float)Math.Sin(DegToRad(enemyTF.rotation.eulerAngles.y));
         movementDirection.y = -1.0f * (float)Math.Sin(DegToRad(enemyTF.rotation.eulerAngles.x));
         movementDirection.z = (float)Math.Cos(DegToRad(enemyTF.rotation.eulerAngles.y));
-        enemyTF.position += (movementDirection * TopSpeed);
+        enemyTF.position += (movementDirection * TopSpeed * Time.deltaTime);
         BorderDetection();
     }
     public double DegToRad(double value)
@@ -90,4 +91,9 @@ public class EnemyManager : MonoBehaviour
         //TeleportRandomly();
         //Debug.Log("DESTROY!");
     }
+
+    /*private void OnDestroy()
+    {
+        dracCry.Play();        
+    }*/
 }

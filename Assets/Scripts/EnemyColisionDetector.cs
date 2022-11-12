@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyColisionDetector : MonoBehaviour
 {
+
+    public AudioSource dracCry;
     /*// Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class EnemyColisionDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        dracCry.Play();        
         Destroy(gameObject);
     }
 }
