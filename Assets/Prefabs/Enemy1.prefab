@@ -658,8 +658,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTF: {fileID: 2759069434911051615}
-  TopSpeed: 1
-  cambioDireccion: 7
+  TopSpeed: 0.8
+  cambioDireccion: 5
 --- !u!114 &1795196422
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ public class CamerPointerSelection : MonoBehaviour
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
     private SceneManager SceneManager;
-    //private readonly string interactableTag = "interactable";
     private readonly string dragTag1 = "drac1";
     private readonly string dragTag2 = "drac2";
     private readonly string dragTag3 = "drac3";
@@ -28,7 +27,6 @@ public class CamerPointerSelection : MonoBehaviour
 
     private void GazeSelection()
     {
-        //_gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
         SceneManager.LoadScene("DrivingDrac");
     }
 

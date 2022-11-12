@@ -29,24 +29,17 @@ public class CameraPointerManager : MonoBehaviour
         GazeManager.Instance.OnGazeSelection += GazeSelection;
         dracActive = PlayerSelectionManager.instance.GetDracSelection();
         Debug.Log($"dragon {dracActive} seleccionado");
-        //GameObject.FindGameObjectWithTag($"drac{dracActive}").SetActive(true);
-        //drac = GameObject.FindGameObjectWithTag($"drac2");
+        //search for the character selected and destroy the others
         for (int i = 0; i < maxDracs; i++)
         {
             drac[i] = GameObject.Find($"drac{i+1}");
             drac[i].SetActive(false);
         }
-        //GameObject.Find($"drac{dracActive}").SetActive(true);
-        //drac = GameObject.Find($"drac2");
-        //drac.SetActive(false);
         drac[dracActive-1].SetActive(true);
     }
 
     private void GazeSelection()
     {
-        //_gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
-        //Create proyectile
-        //Debug.Log("DESTROY! from camerapointermanager");
         Vector3 position = playerTf.position;
         Quaternion rotation = playerTf.rotation;
         Instantiate(projectile, position, rotation);
@@ -76,11 +69,8 @@ public class CameraPointerManager : MonoBehaviour
         {
             timer = 0;
             // GameObject detected in front of the camera.
-            if (hit.transform.gameObject.CompareTag("interactable")) ;// || _gazedAtObject != hit.transform.gameObject)
+            if (hit.transform.gameObject.CompareTag("interactable"));
             {
-                
-                //Debug.Log($"GameObject detected in front of the camera {hit.point.ToString()}");
-                // New GameObject.
                 _gazedAtObject?.SendMessage("OnPointerExit", null, SendMessageOptions.DontRequireReceiver);
                 _gazedAtObject = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerEnter", null, SendMessageOptions.DontRequireReceiver);
@@ -88,7 +78,6 @@ public class CameraPointerManager : MonoBehaviour
             if (hit.transform.CompareTag(interactableTag) && selecting == false)
             {
                 selecting = true;
-                PointerOnGaze(hit.point);
                 GazeManager.Instance.StartGazeSelection();
             }
             else
@@ -96,8 +85,6 @@ public class CameraPointerManager : MonoBehaviour
                 if(selecting == true)
                 {
                     selecting = false;
-                    PointerOutGaze();
-                    //GazeManager.Instance.CancelGazeSelection();
                 }
             }
         }
@@ -113,37 +100,13 @@ public class CameraPointerManager : MonoBehaviour
         {
             _gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
         }
-
-        //generating movement
-        //movementDirection = CalculatePointerPosition(transform.position, hit.point, 1.0f); ;
-        //moveXIn(movementDirection.x * TopSpeed);
-        //moveZIn(TopSpeed);
-        //playerTf.position += ((moveXIn(movementDirection.x) + moveZIn(movementDirection.z) + moveYIn(movementDirection.y)) - playerTf.position) * TopSpeed;
         movementDirection.x = (float)Math.Sin(DegToRad(playerTf.rotation.eulerAngles.y));
         movementDirection.y = -1.0f * (float)Math.Sin(DegToRad(playerTf.rotation.eulerAngles.x));
         movementDirection.z = (float)Math.Cos(DegToRad(playerTf.rotation.eulerAngles.y));
         playerTf.parent.position += (movementDirection * TopSpeed * Time.deltaTime);
         BorderDetection();
-        //Debug.Log($"pos = {playerTf.position.ToString()}");
-        //Debug.Log($"rot = {playerTf.rotation.eulerAngles.ToString()}");
     }
 
-    private void PointerOnGaze(Vector3 hitPoint)
-    {
-        /*float scaleFactor = scaleSize * Vector3.Distance(transform.position, hitPoint);
-        pointer.transform.localScale = Vector3.one * scaleFactor;
-        pointer.transform.parent.position = CalculatePointerPosition(transform.position, hitPoint, disPointerObject);
-        Debug.Log("Señalando Camera");*/
-    }
-
-    private void PointerOutGaze()
-    {
-       /* pointer.transform.localScale = Vector3.one * 0.1f;
-        pointer.transform.parent.transform.localPosition = new Vector3(0, 0, maxDistancePointer);
-        pointer.transform.parent.parent.transform.rotation = transform.rotation;
-        GazeManager.Instance.CancelGazeSelection();
-        Debug.Log("Deja de señalar camera");*/
-    }
     private Vector3 CalculatePointerPosition(Vector3 p0, Vector3 p1, float t)
     {
         float x = p0.x + t * (p1.x - p0.x);
@@ -165,8 +128,7 @@ public class CameraPointerManager : MonoBehaviour
     public Vector3 moveYIn(float y)
     {
         playerVector = new Vector3(0, y, 0);
-        //Debug.Log(playerVector.ToString());
-        return playerVector;// = new Vector3(0, y, 0);
+        return playerVector;
     }
     public Vector3 moveOut()
     {

@@ -32,8 +32,8 @@ public class GazeManager : MonoBehaviour
     private float timeProggres;
     private bool runTimer;
     private bool resetTimer;
-    private Color active = Color.yellow;// new Color(1, 1, 1);
-    private Color resting = Color.red;// new Color(1, 1, 1);
+    private Color active = Color.yellow;
+    private Color resting = Color.red;
     void Start()
     {
         gazeBarCanvas.SetActive(false);
@@ -93,14 +93,11 @@ public class GazeManager : MonoBehaviour
             timeProggres = timeForSelection;
             resetTimer = true;
             fillIndicator.color = resting;
-            //StartGazeReset();
-            //Debug.Log("DESTROY!");
         }
         else if(timeCounter <= 0)
         {
             timeCounter = 0;
             resetTimer = false;
-            //Debug.Log("Rested!");
             CancelGazeSelection();
         }
 

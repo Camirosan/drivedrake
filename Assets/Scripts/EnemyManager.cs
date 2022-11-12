@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     [Min(1), Tooltip("The iterations needed to change enemy direction")]
     public int cambioDireccion = 5;
     private float cambioDireccionCounter;
-    //public AudioSource dracCry;
+    public AudioSource dracCry;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +31,7 @@ public class EnemyManager : MonoBehaviour
         cambioDireccionCounter -= Time.deltaTime;
         if (cambioDireccionCounter <= 0)
         {
-
-            //Debug.Log(Time.deltaTime);
-            //Debug.Log($"initial direccion {enemyTF.rotation.eulerAngles}");
             enemyTF.rotation = Quaternion.Euler((float)rand.Next(-10, 10), (float)rand.Next(-90, 90), enemyTF.rotation.eulerAngles.z);
-            //Debug.Log($"new direccion {enemyTF.rotation.eulerAngles}");
             cambioDireccionCounter = cambioDireccion;
         }
         movementDirection.x = (float)Math.Sin(DegToRad(enemyTF.rotation.eulerAngles.y));
@@ -76,24 +72,8 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void OnPointerEnter()
-    {
-        //SetMaterial(true);
-        //Debug.Log("Señalando");
-    }
-    public void OnPointerExit()
-    {
-        //SetMaterial(false);
-        //Debug.Log("Deja de señalar");
-    }
-    public void OnPointerClick()
-    {
-        //TeleportRandomly();
-        //Debug.Log("DESTROY!");
-    }
-
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
         dracCry.Play();        
-    }*/
+    }
 }

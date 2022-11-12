@@ -7,6 +7,7 @@ using System.Threading;
 
 public class GazeSelect : MonoBehaviour
 {
+    //this script manage the gaze selection for the selectScene in order to select the drac to ride
     public event Action OnGazeSelection;
 
     public static GazeSelect Instance;
@@ -31,8 +32,8 @@ public class GazeSelect : MonoBehaviour
     private float timeCounter;
     private float timeProggres;
     private bool runTimer;
-    private Color active = Color.yellow;// new Color(1, 1, 1);
-    private Color resting = Color.red;// new Color(1, 1, 1);
+    private Color active = Color.yellow;
+    private Color resting = Color.red;
     void Start()
     {
         gazeBarCanvas.SetActive(false);
@@ -49,12 +50,15 @@ public class GazeSelect : MonoBehaviour
             AddValue(timeProggres);
         }
     }
+
     public void SetUpGaze(float timeForSelection)
     {
+        ///this method determines the time needed to select with the gaze pointer
         this.timeForSelection = timeForSelection;
     }
     public void StartGazeSelection()
     {
+        //this method activates the gauge to show the time left to select with the gaze
         gazeBarCanvas.SetActive(true);
         runTimer = true;
         timeProggres = 0;
@@ -62,6 +66,7 @@ public class GazeSelect : MonoBehaviour
 
     public void CancelGazeSelection()
     {
+        //this method deactivate the gauge for the gaze pointer
         gazeBarCanvas.SetActive(false);
         runTimer = false;
         timeProggres = 0;
@@ -71,6 +76,7 @@ public class GazeSelect : MonoBehaviour
 
     private void AddValue(float val)
     {
+        //this method increment the gauge value
         timeCounter = val;
         if (timeCounter >= timeForSelection)
         {

@@ -6,7 +6,8 @@ public class PlayerSelectionManager : MonoBehaviour
 {
     public static PlayerSelectionManager instance;
 
-
+    //this script is in charge of the character selection data,
+    //this object pass trought the scenes to keep the data of the character selected
     private int dracSelection;
     private void Awake()
     {
@@ -31,16 +32,5 @@ public class PlayerSelectionManager : MonoBehaviour
     public int GetDracSelection()
     {
         return dracSelection;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

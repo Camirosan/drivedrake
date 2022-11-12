@@ -7,13 +7,10 @@ using UnityEngine.UI;
 public class EnemyGeneratorManager : MonoBehaviour
 {
     public GameObject enemyDragon;
-    //private bool enemyActive = false;
     public int enemyNumber = 3;
     GameObject enemyActive;
-    //public Text gameOverText;
     public TextMeshProUGUI gameOverText;
     public string textGameOvere; 
-    //public Text dracRemainingText;
     public TextMeshProUGUI dracRemainingText;
     public string textDracsRemaining;
     // Start is called before the first frame update
@@ -27,7 +24,6 @@ public class EnemyGeneratorManager : MonoBehaviour
     {
         if(enemyNumber > 0 && enemyActive == null)
         {
-            //enemyActive = true;
             enemyActive = InstantiateEnemy();
             enemyNumber--;
             Debug.Log($"Enemy number = {enemyNumber}");
@@ -36,7 +32,6 @@ public class EnemyGeneratorManager : MonoBehaviour
         else if(enemyNumber == 0 && enemyActive == null)
         {
             gameOverText.SetText(textGameOvere);
-            //gameOverText.text = textGameOvere;
             dracRemainingText.SetText("");
         }
     }

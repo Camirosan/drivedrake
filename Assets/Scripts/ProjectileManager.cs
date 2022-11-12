@@ -27,41 +27,37 @@ public class ProjectileManager : MonoBehaviour
     }
     public double DegToRad(double value)
     {
+        //this method transform the degree value to radians
         return (float)(value * 3.141516 / 180);
     }
     public void BorderDetection()
     {
+        //this method destroys the proyectile when it reaches the world berders
         if (projectileTF.position.x >= 5)
         {
             Destroy(gameObject);
             Destroy(projectileTF.parent);
-            //projectileTF.position = new Vector3(-4.99f, projectileTF.position.y, projectileTF.position.z);
         }
         if (projectileTF.position.x <= -5)
         {
             Destroy(projectileTF.parent);
-            //projectileTF.position = new Vector3(4.99f, projectileTF.position.y, projectileTF.position.z);
         }
         if (projectileTF.position.y >= 5)
         {
             Destroy(projectileTF.parent);
-            //projectileTF.position = new Vector3(projectileTF.position.x, 0.01f, projectileTF.position.z);
         }
         if (projectileTF.position.y <= 0)
         { 
             Destroy(projectileTF.parent);
-        //projectileTF.position = new Vector3(projectileTF.position.x, 4.99f, projectileTF.position.z);
         }
         if (projectileTF.position.z >= 5)
         {
             Destroy(gameObject);
             Destroy(projectileTF.parent);
-            //projectileTF.position = new Vector3(projectileTF.position.x, projectileTF.position.y, -4.99f);
         }
         if (projectileTF.position.z <= -5)
         {
             Destroy(projectileTF.parent);
-            //projectileTF.position = new Vector3(projectileTF.position.x, projectileTF.position.y, 4.99f);
         }
     }
 }
